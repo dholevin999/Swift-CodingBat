@@ -1,0 +1,101 @@
+// stringTimes: Given a string and a non-negative int n, return a larger string that is n copies of the original string.
+func stringTimes(str: String, n: Int) -> String {
+    var result = str
+    
+    for _ in 1..<n {
+        result += str
+    }
+    
+    return result
+}
+
+//stringTimes(str: "Hi", n: 2) //HiHi
+//stringTimes(str: "Hi", n: 3) //HiHiHi
+//stringTimes(str: "Hi", n: 1) //Hi
+
+// frontTimes: Given a string and a non-negative int n, we'll say that the front of the string is the first 3 chars, or whatever is there if the string is less than length 3. Return n copies of the front;
+func frontTimes(str: String, n: Int) -> String {
+    var strFront: String
+    var result = ""
+    let index1 = str.index(str.startIndex, offsetBy: 3)
+    
+    if str.characters.count <= 3 {
+        strFront = str
+    } else {
+        strFront = str.substring(to: index1)
+    }
+    
+    for _ in 1...n {
+        result += strFront
+    }
+    
+    return result
+}
+
+//frontTimes(str: "Chocolate", n: 2) //ChoCho
+//frontTimes(str: "Chocolate", n: 3) //ChoChoCho
+//frontTimes(str: "Abc", n: 2) //AbcAbcAbc
+
+//countXX: Count the number of "xx" in the given string. We'll say that overlapping is allowed, so "xxx" contains 2 "xx".
+func countXX(str: String) -> Int {
+    var count = 0;
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 2)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    for index in 0..<str.characters.count-1 {
+        startIndex = str.index(str.startIndex, offsetBy: index)
+        endIndex = str.index(str.startIndex, offsetBy: index+2)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        if str.substring(with: range) == "xx" {
+            count += 1
+        }
+        
+
+    }
+    
+    return count
+}
+
+//countXX(str: "abcxx") //2
+//countXX(str: "xxx") //2
+//countXX(str: "xxxx") //3
+
+//doubleX: Given a string, return true if the first instance of "x" in the string is immediately followed by another "x".
+func doubleX(str: String) -> Bool {
+    var strIndex = str.index(str.startIndex, offsetBy: 1)
+    var strIndex2 = str.index(str.startIndex, offsetBy: 1)
+    
+    for index in 0..<str.characters.count-1 {
+        strIndex = str.index(str.startIndex, offsetBy: index)
+        strIndex2 = str.index(str.startIndex, offsetBy: index+1)
+        if str[strIndex] == "x" && str[strIndex] == str[strIndex2] {
+            return true
+        }
+    }
+    
+    return false
+}
+
+//doubleX(str: "axxbb") //true
+//doubleX(str: "axaxax") //false
+//doubleX(str: "xxxxx") //true
+
+//stringBits: Given a string, return a new string made of every other char starting with the first, so "Hello" yields "Hlo".
+func stringBits(str: String) -> String {
+    var result = ""
+    var strIndex = str.index(str.startIndex, offsetBy: 1)
+    
+    for index in 0..<str.characters.count {
+        strIndex = str.index(str.startIndex, offsetBy: index)
+        if index % 2 == 0 {
+            result += String(str[strIndex])
+        }
+    }
+    
+    return result
+}
+
+//stringBits(str: "Hello") //Hlo
+//stringBits(str: "Hi") //H
+//stringBits(str: "Heeololeo") //Hello

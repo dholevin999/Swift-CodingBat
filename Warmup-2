@@ -99,3 +99,71 @@ func stringBits(str: String) -> String {
 //stringBits(str: "Hello") //Hlo
 //stringBits(str: "Hi") //H
 //stringBits(str: "Heeololeo") //Hello
+
+//stringSplosion: Given a non-empty string like "Code" return a string like "CCoCodCode".
+func stringSplosion(str: String) -> String {
+    var result = ""
+    let startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 1)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+
+    for index in 1...str.characters.count {
+        endIndex = str.index(str.startIndex, offsetBy: index)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        result += str.substring(with: range)
+    }
+    
+    return result
+}
+
+//stringSplosion(str: "Code") //CCoCodCode
+//stringSplosion(str: "abc") //aababc
+//stringSplosion(str: "Code") //aab
+
+//last2: Given a string, return the count of the number of times that a substring length 2 appears in the string and also as the last 2 chars of the string, so "hixxxhi" yields 1 (we won't count the end substring).
+func last2(str: String) -> Int {
+    var count = 0;
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 1)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    let startIndexLast2 = str.index(str.startIndex, offsetBy: str.characters.count-2)
+    let endIndexLast2 = str.index(str.startIndex, offsetBy: str.characters.count)
+    let rangeLast2 = Range(uncheckedBounds: (lower: startIndexLast2, upper: endIndexLast2))
+    let last2 = str.substring(with: rangeLast2)
+    
+    for index in 0..<str.characters.count-3 {
+        startIndex = str.index(str.startIndex, offsetBy: index)
+        endIndex = str.index(str.startIndex, offsetBy: index+2)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+                
+        if str.substring(with: range) == last2 {
+            count += 1
+        }
+    }
+    
+    
+    return count
+}
+
+//last2(str: "hixxhi") //1
+//last2(str: "xaxxaxaxx") //1
+//last2(str: "axxxaaxx") //2
+
+//count9: Given an array of ints, return the number of 9's in the array.
+func count9(nums: [Int]) -> Int {
+    var count = 0;
+    
+    for index in 0..<nums.count {
+        if nums[index] == 9 {
+            count += 1
+            
+        }
+    }
+    
+    return count
+}
+
+//count9(nums: [1, 2, 9) //1
+//count9(nums: [1, 9, 9]) //2
+//count9(nums: [1, 9, 9, 3, 9]) //3

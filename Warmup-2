@@ -167,3 +167,18 @@ func count9(nums: [Int]) -> Int {
 //count9(nums: [1, 2, 9) //1
 //count9(nums: [1, 9, 9]) //2
 //count9(nums: [1, 9, 9, 3, 9]) //3
+
+//arrayFront9: Given an array of ints, return true if one of the first 4 elements in the array is a 9. The array length may be less than 4.
+func arrayFront9(nums: [Int]) -> Bool {
+    for index in 0..<nums.count {
+        if index <= 3 && nums[index] == 9 {
+            return true
+        }
+    }
+    
+    return false
+}
+
+//arrayFront9(nums: [1, 2, 9, 3, 4]) //true
+//arrayFront9(nums: [1, 2, 3, 4, 9]) //false
+//arrayFront9(nums: [1, 2, 3, 4, 5]) //false

@@ -247,3 +247,25 @@ func stringX(str: String) -> String {
 //stringX(str: "xxHxix") //xHix
 //stringX(str: "abxxxcd") //abcd
 //stringX(str: "xabxxxcdx") //xabcdx
+
+//altPairs: Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9 ... so "kittens" yields "kien".
+func altPairs(str: String) -> String {
+    var result = ""
+    var index = str.index(str.startIndex, offsetBy: 0)
+    var x = 0
+    
+    while x < str.characters.count {
+        index = str.index(str.startIndex, offsetBy: x)
+        result.append(str[index])
+        if x % 2 == 1 {
+            x += 2
+        }
+        x += 1
+    }
+    
+    return result
+}
+
+//altPairs(str: "kitten") //kien
+//altPairs(str: "Chocolate") //Chole
+//altPairs(str: "CodingHorror") //Congrr

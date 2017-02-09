@@ -325,3 +325,19 @@ func noTriples(nums: [Int]) -> Bool {
 //noTriples(nums: [1, 1, 2, 2, 1]) //true
 //noTriples(nums: [1, 1, 2, 2, 2, 1]) //false
 //noTriples(nums: [1, 1, 1, 2, 2, 2, 1]) //false
+
+//has271: Given an array of ints, return true if it contains a 2, 7, 1 pattern -- a value, followed by the value plus 5, followed by the value minus 1. Additionally the 271 counts even if the "1" differs by 2 or less from the correct value.
+func has271(nums: [Int]) -> Bool {
+    
+    for x in 0..<nums.count-2 {
+        if (nums[x] == nums[x+1] - 5) && (abs(nums[x] - nums[x+2]) <= 2) {
+            return true
+        }
+    }
+    
+    return false
+}
+
+//has271(nums: [1, 2, 7, 1]) //true
+//has271(nums: [1, 2, 8, 1]) //false
+//has271(nums: [2, 7, 1]) //true

@@ -269,3 +269,27 @@ func altPairs(str: String) -> String {
 //altPairs(str: "kitten") //kien
 //altPairs(str: "Chocolate") //Chole
 //altPairs(str: "CodingHorror") //Congrr
+
+//stringYak: Suppose the string "yak" is unlucky. Given a string, return a version where all the "yak" are removed, but the "a" can be any char. The "yak" strings will not overlap.
+func stringYak(str: String) -> String {
+    var result = ""
+    var index = str.index(str.startIndex, offsetBy: 0)
+    var index2 = str.index(str.startIndex, offsetBy: 0)
+    var x = 0
+    
+    while x < str.characters.count-2 {
+        index = str.index(str.startIndex, offsetBy: x)
+        index2 = str.index(str.startIndex, offsetBy: x+2)
+        if str[index] == "y" && str[index2] == "k" {
+            x += 2
+        } else {
+            result.append(str[index])
+        }
+        x += 1
+    }
+    return result
+}
+
+//stringYak(str: "yakpak") //pak
+//stringYak(str: "pakyak") //pak
+//stringYak(str: "yak123ya") //123ya

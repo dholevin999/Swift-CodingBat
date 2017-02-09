@@ -68,3 +68,25 @@ func sum13(nums: [Int]) -> Int {
 //print(sum13(nums: [1, 2, 2, 1])) //6
 //print(sum13(nums: [1, 1])) //2
 //print(sum13(nums: [1, 2, 2, 1, 13])) //6
+
+//sum67: Return the sum of the numbers in the array, except ignore sections of numbers starting with a 6 and extending to the next 7 (every 6 will be followed by at least one 7). Return 0 for no numbers.
+func sum67(nums: [Int]) -> Int {
+    var sum = 0
+    var range = false
+    
+    for x in 0..<nums.count {
+        
+        if !range {
+            sum += nums[x]
+        }
+        
+        if nums[x] == 6 {
+            range = true
+            sum -= 6
+        } else if nums[x] == 7 {
+            range = false
+        }
+    }
+    
+    return sum
+}

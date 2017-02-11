@@ -90,3 +90,17 @@ func sum67(nums: [Int]) -> Int {
     
     return sum
 }
+
+//has22: Given an array of ints, return true if the array contains a 2 next to a 2 somewhere.
+func has22(nums: [Int]) -> Bool {
+    for x in 0..<nums.count-1 {
+        if nums[x] == 2 && nums[x+1] == 2{
+            return true
+        }
+    }
+    return false
+}
+
+//has22(nums: [1, 2, 2]) //true
+//has22(nums: [1, 2, 1, 2]) //false
+//has22(nums: [2, 1, 2]) //false

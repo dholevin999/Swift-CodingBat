@@ -222,3 +222,20 @@ func either24(nums: [Int]) -> Bool{
 //print(either24(nums: [1, 2, 2])) //true
 //print(either24(nums: [4, 4, 1])) //true
 //print(either24(nums: [4, 4, 1, 2, 2])) //true
+
+//matchUp: Given arrays nums1 and nums2 of the same length, for every element in nums1, consider the corresponding element in nums2 (at the same index). Return the count of the number of times that the two elements differ by 2 or less, but are not equal.
+func matchUp(nums1: [Int], nums2: [Int]) -> Int {
+    var count = 0
+    
+    for x in 0..<nums1.count {
+        if abs(nums1[x] - nums2[x]) <= 2 {
+            count += 1
+        }
+    }
+    
+    return count
+}
+
+//matchUp(nums1: [1, 2, 3], nums2: [2, 3, 10]) //false
+//matchUp(nums1: [1, 2, 3], nums2: [2, 3, 5]) //true
+//matchUp(nums1: [1, 2, 3], nums2: [2, 3, 3]) //true

@@ -3,4 +3,4 @@ Swift solutions to http://codingbat.com problems
 
 Warmup-2 (17/17)
 
-Array2 (10/34)
+Array-2 (17/34)

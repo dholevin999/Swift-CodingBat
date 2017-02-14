@@ -286,3 +286,26 @@ func modThree(nums: [Int]) -> Bool {
 //modThree(nums: [2, 1, 3, 5]) //true
 //modThree(nums: [2, 1, 2, 5]) //false
 //modThree(nums: [2, 4, 2, 5]) //true
+
+//haveThree: Given an array of ints, return true if the value 3 appears in the array exactly 3 times, and no 3's are next to each other.
+func haveThree(nums: [Int]) -> Bool {
+    var count = 0
+    
+    for num in nums {
+        if num == 3 {
+            count += 1
+        }
+    }
+    
+    for x in 0..<nums.count-1 {
+        if nums[x] == 3 && nums[x+1] == 3 {
+            return false
+        }
+    }
+    
+    return count == 3
+}
+
+//haveThree(nums: [3, 1, 3, 1, 3]) //true
+//haveThree(nums: [3, 1, 3, 3]) //false
+//haveThree(nums: [3, 4, 3, 3, 4]) //false

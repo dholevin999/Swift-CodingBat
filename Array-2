@@ -429,3 +429,26 @@ func tenRun(nums: [Int]) -> [Int] {
 //tenRun(nums: [2, 10, 3, 4, 20, 5]) //[2, 10, 10, 10, 20, 20]
 //tenRun(nums: [10, 1, 20, 2]) //[10, 10, 20, 20]
 //tenRun(nums: [10, 1, 9, 20]) //[10, 10, 10, 20]
+
+//pre4: Given a non-empty array of ints, return a new array containing the elements from the original array that come before the first 4 in the original array. The original array will contain at least one 4. Note that it is valid in java to create an array of length 0.
+func pre4(nums: [Int]) -> [Int] {
+    var len = 0
+    var x = 0
+
+        while nums[x] != 4 {
+            len += 1
+            x += 1
+        }
+    
+    var array = [Int?](repeating: nil, count: len)
+    
+    for x in 0..<len {
+        array[x] = nums[x]
+    }
+    
+    return array as! [Int]
+}
+
+//pre4(nums: [1, 2, 4, 1]) //[1, 2]
+//pre4(nums: [3, 1, 4]) //[3, 1]
+//pre4(nums: [1, 4, 4]) //[1]

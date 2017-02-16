@@ -404,3 +404,28 @@ func shiftLeft(nums: [Int]) -> [Int] {
 //shiftLeft(nums: [6, 2, 5, 3]) //[2, 5, 3, 6]
 //shiftLeft(nums: [1, 2]) //[2, 1]
 //shiftLeft(nums: [1]) //[1]
+
+//tenRun: For each multiple of 10 in the given array, change all the values following it to be that multiple of 10, until encountering another multiple of 10. So {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
+func tenRun(nums: [Int]) -> [Int] {
+    var array = nums
+    var tenValue = false
+    var temp = 0
+    
+    for x in 0..<array.count {
+        
+        if array[x] % 10 == 0 {
+            tenValue = true
+            temp = array[x]
+        }
+        
+        if tenValue {
+            array[x] = temp
+        }
+    }
+    
+    return array
+}
+
+//tenRun(nums: [2, 10, 3, 4, 20, 5]) //[2, 10, 10, 10, 20, 20]
+//tenRun(nums: [10, 1, 20, 2]) //[10, 10, 20, 20]
+//tenRun(nums: [10, 1, 9, 20]) //[10, 10, 10, 20]

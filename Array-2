@@ -371,3 +371,18 @@ func tripleUp(nums: [Int]) -> Bool {
 //tripleUp(nums: [1, 4, 5, 6, 2]) //true
 //tripleUp(nums: [1, 2, 3]) //true
 //tripleUp(nums: [1, 2, 4]) //false
+
+//fizzArray3:Given start and end numbers, return a new array containing the sequence of integers from start up to but not including end, so start=5 and end=10 yields {5, 6, 7, 8, 9}. The end number will be greater or equal to the start number. Note that a length-0 array is valid
+func fizzArray3(start: Int, end: Int) -> [Int] {
+    var array = [Int]()
+    
+    for x in start..<end {
+        array.append(x)
+    }
+    
+    return array
+}
+
+//fizzArray3(start: 5, end: 10) //[5, 6, 7, 8, 9]
+//fizzArray3(start: 11, end: 18) //[11, 12, 13, 14, 15, 16, 17]
+//fizzArray3(start: 1, end: 3) //[1, 2]

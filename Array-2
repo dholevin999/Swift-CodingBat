@@ -386,3 +386,21 @@ func fizzArray3(start: Int, end: Int) -> [Int] {
 //fizzArray3(start: 5, end: 10) //[5, 6, 7, 8, 9]
 //fizzArray3(start: 11, end: 18) //[11, 12, 13, 14, 15, 16, 17]
 //fizzArray3(start: 1, end: 3) //[1, 2]
+
+//shiftLeft: Return an array that is "left shifted" by one -- so {6, 2, 5, 3} returns {2, 5, 3, 6}. You may modify and return the given array, or return a new array.
+func shiftLeft(nums: [Int]) -> [Int] {
+    var array = nums
+    
+    
+    for x in 1..<nums.count {
+        array[x-1] = nums[x]
+    }
+    
+    array[array.count-1] = nums[0]
+    
+    return array
+}
+
+//shiftLeft(nums: [6, 2, 5, 3]) //[2, 5, 3, 6]
+//shiftLeft(nums: [1, 2]) //[2, 1]
+//shiftLeft(nums: [1]) //[1]

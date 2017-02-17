@@ -479,3 +479,20 @@ func post4(nums: [Int]) -> [Int] {
 //post4(nums: [2, 4, 1, 2]) //[1, 2]
 //post4(nums: [4, 1, 4, 2]) //[2]
 //post4(nums: [4, 4, 1, 2, 3]) //[1, 2, 3]
+
+//notAlone: We'll say that an element in an array is "alone" if there are values before and after it, and those values are different from it. Return a version of the given array where every instance of the given value which is alone is replaced by whichever value to its left or right is larger.
+func notAlone(nums: [Int], n: Int) -> [Int] {
+    var array = nums
+    
+    for x in 1..<array.count-1 {
+        if array[x] == n && array[x-1] != array[x] && array[x+1] != array[x] {
+            array[x] = array[x+1]
+        }
+    }
+    
+    return array
+}
+
+//notAlone(nums: [1, 2, 3], n: 2) //[1, 3, 3]
+//notAlone(nums: [1, 2, 3, 2, 5, 2], n: 2) //[1, 3, 3, 5, 5, 2]
+//notAlone(nums: [3, 4], n: 3) //[3, 4]

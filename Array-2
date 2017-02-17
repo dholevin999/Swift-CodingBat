@@ -452,3 +452,30 @@ func pre4(nums: [Int]) -> [Int] {
 //pre4(nums: [1, 2, 4, 1]) //[1, 2]
 //pre4(nums: [3, 1, 4]) //[3, 1]
 //pre4(nums: [1, 4, 4]) //[1]
+
+//post4: Given a non-empty array of ints, return a new array containing the elements from the original array that come after the last 4 in the original array. The original array will contain at least one 4. Note that it is valid in java to create an array of length 0.
+func post4(nums: [Int]) -> [Int] {
+    var x = nums.count - 1
+    var len = 0
+    
+    while x > 0 {
+        if nums[x] != 4 {
+            len += 1
+        }
+        x -= 1
+    }
+    
+    var array = [Int?](repeating: nil, count: len)
+    var y = 0
+    
+    while y < len {
+        array[y] = nums[nums.count - len + y]
+        y += 1
+    }
+    
+    return array as! [Int]
+}
+
+//post4(nums: [2, 4, 1, 2]) //[1, 2]
+//post4(nums: [4, 1, 4, 2]) //[2]
+//post4(nums: [4, 4, 1, 2, 3]) //[1, 2, 3]

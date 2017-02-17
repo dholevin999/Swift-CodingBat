@@ -551,3 +551,33 @@ func withoutTen(nums: [Int]) -> [Int] {
 //withoutTen(nums: [1, 10, 10, 2]) //[1, 2, 0, 0]
 //withoutTen(nums: [10, 2, 10]) //[2, 0, 0]
 //withoutTen(nums: [1, 99, 10]) //[1, 99, 0]
+
+//zeroMax: Return a version of the given array where each zero value in the array is replaced by the largest odd value to the right of the zero in the array. If there is no odd value to the right of the zero, leave the zero as a zero.
+func zeroMax(nums: [Int]) -> [Int] {
+    var array = nums
+    var maxOdd: Int
+    var y = 0
+    
+    for x in 0..<array.count {
+        if array[x] == 0 {
+            maxOdd = 0
+            y = x + 1
+            while y < array.count {
+                if array[y] % 2 == 1 && array[y] > maxOdd {
+                    maxOdd = array[y]
+                }
+                y += 1
+            }
+            
+            if maxOdd != 0 {
+                array[x] = maxOdd
+            }
+        }
+    }
+    
+    return array
+}
+
+//zeroMax(nums: [0, 5, 0, 3])) //[5, 5, 3, 3]
+//zeroMax(nums: [0, 4, 0, 3])) //[3, 4, 3, 3]
+//zeroMax(nums: [0, 1, 0])) //[1, 1, 0]

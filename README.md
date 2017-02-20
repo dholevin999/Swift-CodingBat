@@ -5,4 +5,4 @@ Warmup-2 (17/17)
 
 Array-2 (34/34)
 
-String-2 (3/21)
+String-2 (8/21)

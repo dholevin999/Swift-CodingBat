@@ -1,0 +1,17 @@
+//doubleChar: Given a string, return a string where for every char in the original, there are two chars.
+func doubleChar(str: String) -> String {
+    var index = str.index(str.startIndex, offsetBy: 0)
+    var result = ""
+    
+    for x in 0..<str.characters.count {
+        index = str.index(str.startIndex, offsetBy: x)
+        result += "\(str[index])"
+        result += "\(str[index])"
+    }
+    
+    return result
+}
+
+//doubleChar(str: "The") //TThhee
+//doubleChar(str: "AAbb") //AAAAbbbb
+//doubleChar(str: "Hi-There") //HHii--TThheerree

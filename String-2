@@ -124,3 +124,33 @@ func endOther(a: String, b: String) -> Bool {
 //endOther(a: "Hiabc", b: "abc") //true
 //endOther(a: "AbC", b: "HiaBc") //true
 //endOther(a: "abc", b: "abXabc") //true
+
+//xyzThere: Return true if the given string contains an appearance of "xyz" where the xyz is not directly preceeded by a period (.). So "xxyz" counts but "x.xyz" does not.
+func xyzThere(str: String) -> Bool {
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 1)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    var periodIndexStart = str.index(str.startIndex, offsetBy: 0)
+    var periodIndexEnd = str.index(str.startIndex, offsetBy: 1)
+    var periodRange = Range(uncheckedBounds: (lower: periodIndexEnd, upper: periodIndexEnd))
+    
+    for index in 0..<str.characters.count-3 {
+        startIndex = str.index(str.startIndex, offsetBy: index+1)
+        endIndex = str.index(str.startIndex, offsetBy: index+4)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        
+        periodIndexStart = str.index(str.startIndex, offsetBy: index)
+        periodIndexEnd = str.index(str.startIndex, offsetBy: index+1)
+        periodRange = Range(uncheckedBounds: (lower: periodIndexStart, upper: periodIndexEnd))
+        
+        if str.substring(with: range) == "xyz" && str.substring(with: periodRange) == "." {
+            return false
+        }
+    }
+    return true
+}
+
+//xyzThere(str: "abcxyz") //true
+//xyzThere(str: "abc.xyz") //false
+//xyzThere(str: "xyz.abc") //true

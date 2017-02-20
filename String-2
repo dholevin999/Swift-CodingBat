@@ -185,3 +185,36 @@ func bobThere(str: String) -> Bool {
 //bobThere(str: "abcbob") //true
 //bobThere(str: "b9b") //true
 //bobThere(str: "bac") //false
+
+//xyBalance: We'll say that a String is xy-balanced if for all the 'x' chars in the string, there exists a 'y' char somewhere later in the string. So "xxy" is balanced, but "xyx" is not. One 'y' can balance multiple 'x's. Return true if the given string is xy-balanced.
+func xyBalance(str: String) -> Bool {
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 1)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    var indexStart2 = str.index(str.startIndex, offsetBy: 0)
+    var indexEnd2 = str.index(str.startIndex, offsetBy: 1)
+    var range2 = Range(uncheckedBounds: (lower: indexStart2, upper: indexEnd2))
+    
+    for index in 0..<str.characters.count-2 {
+        startIndex = str.index(str.startIndex, offsetBy: index)
+        endIndex = str.index(str.startIndex, offsetBy: index+1)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        
+        if str.substring(with: range) == "x" {
+            indexStart2 = str.index(str.startIndex, offsetBy: index)
+            indexEnd2 = str.index(str.startIndex, offsetBy: str.characters.count)
+            range2 = Range(uncheckedBounds: (lower: indexStart2, upper: indexEnd2))
+            if str.substring(with: range2).range(of: "y") == nil {
+                return false
+            }
+        }
+    }
+    
+    
+    return true
+}
+
+//xyBalance(str: "aaxbby") //true
+//xyBalance(str: "aaxbb") //false
+//xyBalance(str: "yaaxbb") //false

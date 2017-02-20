@@ -581,3 +581,27 @@ func zeroMax(nums: [Int]) -> [Int] {
 //zeroMax(nums: [0, 5, 0, 3])) //[5, 5, 3, 3]
 //zeroMax(nums: [0, 4, 0, 3])) //[3, 4, 3, 3]
 //zeroMax(nums: [0, 1, 0])) //[1, 1, 0]
+
+//evenOdd: Return an array that contains the exact same numbers as the given array, but rearranged so that all the even numbers come before all the odd numbers. Other than that, the numbers can be in any order. You may modify and return the given array, or make a new array.
+func evenOdd(nums: [Int]) -> [Int] {
+    var array = nums
+    var y = 0
+    var z = 0
+
+    
+    for x in 0..<nums.count {
+        if nums[x] % 2 == 0 {
+            array[y] = nums[x]
+            y += 1
+        } else {
+            array[array.count - 1 - z] = nums[x]
+            z += 1
+        }
+    }
+    
+    return array
+}
+
+//evenOdd(nums: [1, 0, 1, 0, 0, 1, 1]) //[0, 0, 0, 1, 1, 1, 1]
+//evenOdd(nums: [3, 3, 2]) //[2, 3, 3]
+//evenOdd(nums: [2, 2, 2]) //[2, 2, 2]

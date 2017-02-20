@@ -154,3 +154,34 @@ func xyzThere(str: String) -> Bool {
 //xyzThere(str: "abcxyz") //true
 //xyzThere(str: "abc.xyz") //false
 //xyzThere(str: "xyz.abc") //true
+
+//bobThere: Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char.
+func bobThere(str: String) -> Bool {
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 1)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    var indexStart2 = str.index(str.startIndex, offsetBy: 0)
+    var indexEnd2 = str.index(str.startIndex, offsetBy: 1)
+    var range2 = Range(uncheckedBounds: (lower: indexStart2, upper: indexEnd2))
+    
+    for index in 0..<str.characters.count-2 {
+        startIndex = str.index(str.startIndex, offsetBy: index)
+        endIndex = str.index(str.startIndex, offsetBy: index+1)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        
+        indexStart2 = str.index(str.startIndex, offsetBy: index+2)
+        indexEnd2 = str.index(str.startIndex, offsetBy: index+3)
+        range2 = Range(uncheckedBounds: (lower: indexStart2, upper: indexEnd2))
+        
+        if str.substring(with: range) == "b" && str.substring(with: range2) == "b" {
+            return true
+        }
+    }
+    
+    return false
+}
+
+//bobThere(str: "abcbob") //true
+//bobThere(str: "b9b") //true
+//bobThere(str: "bac") //false

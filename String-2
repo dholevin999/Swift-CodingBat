@@ -15,3 +15,27 @@ func doubleChar(str: String) -> String {
 //doubleChar(str: "The") //TThhee
 //doubleChar(str: "AAbb") //AAAAbbbb
 //doubleChar(str: "Hi-There") //HHii--TThheerree
+
+//countHi: Return the number of times that the string "hi" appears anywhere in the given string.
+func countHi(str: String) -> Int {
+    var count = 0
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 1)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+
+    for x in 0..<str.characters.count-1 {
+        startIndex = str.index(str.startIndex, offsetBy: x)
+        endIndex = str.index(str.startIndex, offsetBy: x+2)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        
+        if str.substring(with: range) == "hi" {
+            count += 1
+        }
+    }
+    
+    return count
+}
+
+//countHi(str: "abc hi ho") //1
+//countHi(str: "ABChi hi") //2
+//countHi(str: "hihi") //2

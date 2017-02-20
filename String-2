@@ -67,3 +67,35 @@ func catDog(str: String) -> Bool {
 //catDog(str: "catdog") //true
 //catDog(str: "catcat") //false
 //catDog(str: "1cat1cadodog") //true
+
+//countCode: Return the number of times that the string "code" appears anywhere in the given string, except we'll accept any letter for the 'd', so "cope" and "cooe" count.
+func countCode(str: String) -> Int {
+    var count = 0
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 1)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    var eIndexStart = str.index(str.startIndex, offsetBy: 0)
+    var eIndexEnd = str.index(str.startIndex, offsetBy: 1)
+    var eRange = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    for index in 0..<str.characters.count-3 {
+        startIndex = str.index(str.startIndex, offsetBy: index)
+        endIndex = str.index(str.startIndex, offsetBy: index+2)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        
+        eIndexStart = str.index(str.startIndex, offsetBy: index+3)
+        eIndexEnd = str.index(str.startIndex, offsetBy: index+4)
+        eRange = Range(uncheckedBounds: (lower: eIndexStart, upper: eIndexEnd))
+        
+        if str.substring(with: range) == "co" && str.substring(with: eRange) == "e" {
+            count += 1
+        }
+    }
+    
+    return count
+}
+
+//countCode(str: "aaacodebbb") //1
+//countCode(str: "codexxcode") //2
+//countCode(str: "cozexxcope") //2

@@ -310,3 +310,32 @@ func repeatSeparator(word: String, sep: String, count: Int) -> String {
 //repeatSeparator(word: "Word", sep: "X", count: 3) //WordXWordXWord
 //repeatSeparator(word: "This", sep: "And", count: 2) //ThisAndThis
 //repeatSeparator(word: "This", sep: "And", count: 1) //This
+
+//prefixAgain: Given a string, consider the prefix string made of the first N chars of the string. Does that prefix string appear somewhere else in the string? Assume that the string is not empty and that N is in the range 1..str.length().
+func prefixAgain(str: String, n: Int) -> Bool {
+    
+    let startIndex = str.index(str.startIndex, offsetBy: 0)
+    let endIndex = str.index(str.startIndex, offsetBy: n)
+    let range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    var startIndex2 = str.index(str.startIndex, offsetBy: 0)
+    var endIndex2 = str.index(str.startIndex, offsetBy: n)
+    var range2 = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    
+    for index in n..<str.characters.count - n {
+        startIndex2 = str.index(str.startIndex, offsetBy: index)
+        endIndex2 = str.index(str.startIndex, offsetBy: index + n)
+        range2 = Range(uncheckedBounds: (lower: startIndex2, upper: endIndex2))
+        
+        if str.substring(with: range) == str.substring(with: range2) {
+            return true
+        }
+    }
+    
+    return false
+}
+
+//prefixAgain(str: "abXYabc", n: 1) //true
+//prefixAgain(str: "abXYabc", n: 2) //true
+//prefixAgain(str: "abXYabc", n: 3) //false

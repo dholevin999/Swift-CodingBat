@@ -249,3 +249,22 @@ func mixString(a: String, b: String) -> String {
 //mixString(a: "abc", b: "xyz") //axbycz
 //mixString(a: "Hi", b: "There") //HTihere
 //mixString(a: "xxxx", b: "There") //xTxhxexre
+
+//repeatEnd: Given a string and an int n, return a string made of n repetitions of the last n characters of the string. You may assume that n is between 0 and the length of the string, inclusive.
+func repeatEnd(str: String, n: Int) -> String {
+    var result = ""
+    
+    let startIndex = str.index(str.startIndex, offsetBy: str.characters.count - n)
+    let endIndex = str.index(str.startIndex, offsetBy: str.characters.count)
+    let range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    for _ in 0..<n {
+        result += str.substring(with: range)
+    }
+    
+    return result
+}
+
+//repeatEnd(str: "Hello", n: 3) //llollollo
+//repeatEnd(str: "Hello", n: 2) //lolo
+//repeatEnd(str: "Hello", n: 1) //o

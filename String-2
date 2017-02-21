@@ -291,3 +291,22 @@ func repeatFront(str: String, n: Int) -> String {
 //repeatFront(str: "Chocolate", n: 4) //ChocChoChC
 //repeatFront(str: "Chocolate", n: 3) //ChoChC
 //repeatFront(str: "Ice Cream", n: 2) //IcI
+
+//repeatSeparator: Given two strings, word and a separator sep, return a big string made of count occurrences of the word, separated by the separator string.
+func repeatSeparator(word: String, sep: String, count: Int) -> String {
+    var result = ""
+    
+    for index in 0..<count {
+        result += word
+        
+        if index < count - 1 {
+            result += sep
+        }
+    }
+    
+    return result
+}
+
+//repeatSeparator(word: "Word", sep: "X", count: 3) //WordXWordXWord
+//repeatSeparator(word: "This", sep: "And", count: 2) //ThisAndThis
+//repeatSeparator(word: "This", sep: "And", count: 1) //This

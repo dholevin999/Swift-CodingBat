@@ -431,3 +431,28 @@ func sameStarChar(str: String) -> Bool {
 //sameStarChar(str: "xy*yzz") //true
 //sameStarChar(str: "xy*zzz") //false
 //sameStarChar(str: "*xa*az") //true
+
+//oneTwo: Given a string, compute a new string by moving the first char to come after the next two chars, so "abc" yields "bca". Repeat this process for each subsequent group of 3 chars, so "abcdef" yields "bcaefd". Ignore any group of fewer than 3 chars at the end.
+func oneTwo(str: String) -> String {
+    var result = ""
+    var index = 0
+    
+    var index1 = str.index(str.startIndex, offsetBy: 0)
+    var index2 = str.index(str.startIndex, offsetBy: 0)
+    var index3 = str.index(str.startIndex, offsetBy: 0)
+    
+    while index < str.characters.count {
+        index1 = str.index(str.startIndex, offsetBy: index)
+        index2 = str.index(str.startIndex, offsetBy: index+1)
+        index3 = str.index(str.startIndex, offsetBy: index+2)
+        
+        result = result + String(str[index2]) + String(str[index3]) + String(str[index1])
+        index += 3
+    }
+    
+    return result
+}
+
+//oneTwo(str: "abc") //bca
+//oneTwo(str: "tca") //cat
+//oneTwo(str: "tcagdo") //catdog

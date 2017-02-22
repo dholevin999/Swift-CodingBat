@@ -339,3 +339,27 @@ func prefixAgain(str: String, n: Int) -> Bool {
 //prefixAgain(str: "abXYabc", n: 1) //true
 //prefixAgain(str: "abXYabc", n: 2) //true
 //prefixAgain(str: "abXYabc", n: 3) //false
+
+//xyzMiddle: Given a string, does "xyz" appear in the middle of the string? To define middle, we'll say that the number of chars to the left and right of the "xyz" must differ by at most one.
+func xyzMiddle(str: String) -> Bool {
+    
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 3)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    for index in 0..<str.characters.count-2 {
+        startIndex = str.index(str.startIndex, offsetBy: index)
+        endIndex = str.index(str.startIndex, offsetBy: index + 3)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        
+        if str.substring(with: range) == "xyz" && abs(index - (str.characters.count - (index+3))) <= 1 {
+            return true
+        }
+    }
+    
+    return false
+}
+
+//xyzMiddle(str: "AAxyzBB") //true
+//xyzMiddle(str: "AxyzBB") //true
+//xyzMiddle(str: "AxyzBBB") //false

@@ -363,3 +363,44 @@ func xyzMiddle(str: String) -> Bool {
 //xyzMiddle(str: "AAxyzBB") //true
 //xyzMiddle(str: "AxyzBB") //true
 //xyzMiddle(str: "AxyzBBB") //false
+
+//getSandwitch: A sandwich is two pieces of bread with something in between. Return the string that is between the first and last appearance of "bread" in the given string, or return the empty string "" if there are not two pieces of bread.
+func getSandwitch(str: String) -> String {
+    var result = ""
+    var bread = false
+    var breadCount = 0
+    
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 3)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    var index2 = str.index(str.startIndex, offsetBy: 0)
+    
+    
+    for index in 0..<str.characters.count-4 {
+        startIndex = str.index(str.startIndex, offsetBy: index)
+        endIndex = str.index(str.startIndex, offsetBy: index + 5)
+        range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        
+        if str.substring(with: range) == "bread" && bread == false {
+            bread = true
+            breadCount += 1
+        } else if str.substring(with: range) == "bread" && bread == true {
+            bread = false
+            breadCount += 1
+        }
+        
+        if bread == true {
+            index2 = str.index(str.startIndex, offsetBy: index+5)
+            result += String(str[index2])
+        }
+    }
+
+    result = result.replacingOccurrences(of: "bread", with: "")
+    
+    
+    return result
+}
+
+//getSandwitch(str: "breadjambread") //jam
+//getSandwitch(str: "xxbreadjambreadyy") //jam

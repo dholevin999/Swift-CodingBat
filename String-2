@@ -456,3 +456,31 @@ func oneTwo(str: String) -> String {
 //oneTwo(str: "abc") //bca
 //oneTwo(str: "tca") //cat
 //oneTwo(str: "tcagdo") //catdog
+
+//zipZap: Look for patterns like "zip" and "zap" in the string -- length-3, starting with 'z' and ending with 'p'. Return a string where for all such words, the middle letter is gone, so "zipXzap" yields "zpXzp".
+func zipZap(str: String) -> String {
+    var result = ""
+    var index = 0
+    
+    var indexZ = str.index(str.startIndex, offsetBy: 0)
+    var indexP = str.index(str.startIndex, offsetBy: 0)
+    
+    while index < str.characters.count-2 {
+        indexZ = str.index(str.startIndex, offsetBy: index)
+        indexP = str.index(str.startIndex, offsetBy: index+2)
+        
+        if str[indexZ] == "z" && str[indexP] == "p" {
+            result += "zp"
+            index += 2
+        } else {
+            result += String(str[indexZ])
+        }
+        index += 1
+    }
+    
+    return result
+}
+
+//(zipZap(str: "zipXzap") //zpXzp
+//(zipZap(str: "zopzop") //zpzp
+//(zipZap(str: "zzzopzop") //zzzpzp

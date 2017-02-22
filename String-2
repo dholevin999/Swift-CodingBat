@@ -404,3 +404,30 @@ func getSandwitch(str: String) -> String {
 
 //getSandwitch(str: "breadjambread") //jam
 //getSandwitch(str: "xxbreadjambreadyy") //jam
+
+//sameStarChar: Returns true if for every '*' (star) in the string, if there are chars both immediately before and after the star, they are the same.
+func sameStarChar(str: String) -> Bool {
+    var indexStar = str.index(str.startIndex, offsetBy: 0)
+    var indexStarMinus = str.index(str.startIndex, offsetBy: 0)
+    var indexStarPlus = str.index(str.startIndex, offsetBy: 0)
+
+    for index in 0..<str.characters.count {
+        indexStar = str.index(str.startIndex, offsetBy: index)
+        if index > 0 && index < str.characters.count - 1 {
+            indexStarMinus = str.index(str.startIndex, offsetBy: index-1)
+            indexStarPlus = str.index(str.startIndex, offsetBy: index+1)
+        }
+        
+        if index > 0 && index < str.characters.count - 1 && str[indexStar] == "*" && str[indexStarMinus] == str[indexStarPlus] {
+            return true
+        } else if (index == 0 || index == str.characters.count-1) && str[indexStar] == "*" {
+            return false
+        }
+    }
+    
+    return false
+}
+
+//sameStarChar(str: "xy*yzz") //true
+//sameStarChar(str: "xy*zzz") //false
+//sameStarChar(str: "*xa*az") //true

@@ -543,3 +543,40 @@ func plusOut(str: String, word: String) -> String {
 //plusOut(str: "12xy34", word: "xy") //++xy++
 //plusOut(str: "12xy34", word: "1") //1+++++
 //plusOut(str: "12xy34xyabcxy", word: "xy") //++xy++xy+++xy
+
+//wordEnds: Given a string and a non-empty word string, return a string made of each char just before and just after every appearance of the word in the string. Ignore cases where there is no char before or after the word, and a char may be included twice if it is between two words.
+func wordEnds(str: String, word: String) -> String {
+    var result = ""
+    var index = 0
+    
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 3)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    while index < str.characters.count {
+        if index < str.characters.count-word.characters.count+1 {
+            startIndex = str.index(str.startIndex, offsetBy: index)
+            endIndex = str.index(str.startIndex, offsetBy: index + word.characters.count)
+            range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        }
+        
+        if index < str.characters.count-word.characters.count && index > 0 && str.substring(with: range) == word {
+            result = result + String(str[str.index(str.startIndex, offsetBy: index-1)]) + String(str[str.index(str.startIndex, offsetBy: index + word.characters.count)])
+            index += word.characters.count
+        } else if index < str.characters.count-word.characters.count && str.substring(with: range) == word {
+            result = result + String(str[str.index(str.startIndex, offsetBy: index + word.characters.count)])
+            index += word.characters.count
+        } else if index > 0 && str.substring(with: range) == word {
+            result = result + String(str[str.index(str.startIndex, offsetBy: index-1)])
+            index += word.characters.count
+        } else {
+            index += 1
+        }
+    }
+    
+    return result
+}
+
+//wordEnds(str: "abcXY123XYijk", word: "XY") //c13i
+//wordEnds(str: "XY123XY", word: "XY") //13
+//wordEnds(str: "XY1XY", word: "XY") //11

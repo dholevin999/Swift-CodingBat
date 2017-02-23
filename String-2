@@ -510,3 +510,36 @@ func starOut(str: String) -> String {
 //starOut(str: "ab*cd") //ad
 //starOut(str: "ab*cd") //ad
 //starOut(str: "sm*eilly") //silly
+
+//plusOut: Given a string and a non-empty word string, return a version of the original String where all chars have been replaced by pluses ("+"), except for appearances of the word string which are preserved unchanged.
+func plusOut(str: String, word: String) -> String {
+    var result = ""
+    var index = 0
+    
+    var startIndex = str.index(str.startIndex, offsetBy: 0)
+    var endIndex = str.index(str.startIndex, offsetBy: 3)
+    var range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    
+    while index < str.characters.count {
+        if index < str.characters.count-word.characters.count+1 {
+            startIndex = str.index(str.startIndex, offsetBy: index)
+            endIndex = str.index(str.startIndex, offsetBy: index + word.characters.count)
+            range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+        }
+        
+        if index < str.characters.count-word.characters.count+1 && str.substring(with: range) == word {
+            
+            result += word
+            index += word.characters.count
+        } else {
+            result += "+"
+            index += 1
+        }
+    }
+    
+    return result
+}
+
+//plusOut(str: "12xy34", word: "xy") //++xy++
+//plusOut(str: "12xy34", word: "1") //1+++++
+//plusOut(str: "12xy34xyabcxy", word: "xy") //++xy++xy+++xy

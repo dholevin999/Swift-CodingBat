@@ -1,0 +1,14 @@
+//scoresIncreasing: Given an array of scores, return true if each score is equal or greater than the one before. The array will be length 2 or more.
+func scoresIncreasing(scores: [Int]) -> Bool {
+    for num in 1..<scores.count {
+        if scores[num] < scores[num-1] {
+            return false
+        }
+    }
+    
+    return true
+}
+
+//scoresIncreasing(scores: [1, 3, 4])
+//scoresIncreasing(scores: [1, 3, 2])
+//scoresIncreasing(scores: [1, 1, 4])

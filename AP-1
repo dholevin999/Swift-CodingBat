@@ -68,3 +68,19 @@ func average(scores: [Int], start: Int, end: Int) -> Int {
 //scoresAverage(scores: [2, 2, 4, 4]) //4
 //scoresAverage(scores: [4, 4, 4, 2, 2, 2]) //4
 //scoresAverage(scores: [3, 4, 5, 1, 2, 3] //4
+
+//wordsCount: Given an array of strings, return the count of the number of strings with the given length.
+func wordsCount(words: [String], len: Int) -> Int {
+    var count = 0
+    
+    for word in words {
+        if word.characters.count == len {
+            count += 1
+        }
+    }
+    return count
+}
+
+//wordsCount(words: ["a", "bb", "b", "ccc"], len: 1) //2
+//wordsCount(words: ["a", "bb", "b", "ccc"], len: 3) //1
+//wordsCount(words: ["a", "bb", "b", "ccc"], len: 4) //0

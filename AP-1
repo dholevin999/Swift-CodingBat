@@ -99,3 +99,20 @@ func wordsFront(words: [String], n: Int) -> [String] {
 //wordsFront(words: ["a", "b", "c", "d"], n: 1) //["a"]
 //wordsFront(words: ["a", "b", "c", "d"], n: 2) //["a", "b"]
 //wordsFront(words: ["a", "b", "c", "d"], n: 3) //["a", "b", "c"]
+
+//wordsWithoutList: Given an array of strings, return a new List (e.g. an ArrayList) where all the strings of the given length are omitted. See wordsWithout() below which is more difficult because it uses arrays.
+func wordsWithoutList(words: [String], len: Int) -> [String] {
+    var result = [String]()
+    
+    for word in words {
+        if word.characters.count != len {
+            result.append(word)
+        }
+    }
+    
+    return result
+}
+
+//wordsWithoutList(words: ["a", "bb", "b", "ccc"], len: 1) //["bb", "ccc"]
+//wordsWithoutList(words: ["a", "bb", "b", "ccc"], len: 3) //["a", "bb", "b",]
+//wordsWithoutList(words: ["a", "bb", "b", "ccc"], len: 4) //["a", "bb", "b", "ccc"]

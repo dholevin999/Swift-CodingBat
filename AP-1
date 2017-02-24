@@ -84,3 +84,18 @@ func wordsCount(words: [String], len: Int) -> Int {
 //wordsCount(words: ["a", "bb", "b", "ccc"], len: 1) //2
 //wordsCount(words: ["a", "bb", "b", "ccc"], len: 3) //1
 //wordsCount(words: ["a", "bb", "b", "ccc"], len: 4) //0
+
+//wordsFront: Given an array of strings, return a new array containing the first N strings. N will be in the range 1..length.
+func wordsFront(words: [String], n: Int) -> [String] {
+    var result = [String]()
+    
+    for index in 0..<n {
+        result.append(words[index])
+    }
+    
+    return result
+}
+
+//wordsFront(words: ["a", "b", "c", "d"], n: 1) //["a"]
+//wordsFront(words: ["a", "b", "c", "d"], n: 2) //["a", "b"]
+//wordsFront(words: ["a", "b", "c", "d"], n: 3) //["a", "b", "c"]

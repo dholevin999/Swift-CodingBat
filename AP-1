@@ -116,3 +116,22 @@ func wordsWithoutList(words: [String], len: Int) -> [String] {
 //wordsWithoutList(words: ["a", "bb", "b", "ccc"], len: 1) //["bb", "ccc"]
 //wordsWithoutList(words: ["a", "bb", "b", "ccc"], len: 3) //["a", "bb", "b",]
 //wordsWithoutList(words: ["a", "bb", "b", "ccc"], len: 4) //["a", "bb", "b", "ccc"]
+
+//hasOne: Given a positive int n, return true if it contains a 1 digit. Note: use % to get the rightmost digit, and / to discard the rightmost digit.
+func hasOne(n: Int) -> Bool {
+    var num = n
+    
+    while num > 0 {
+        if num % 10 == 1 {
+            return true
+        } else {
+            num = num / 10
+        }
+    }
+    
+    return false
+}
+
+//hasOne(n: 10)) //true
+//hasOne(n: 22)) //false
+//hasOne(n: 220)) //false

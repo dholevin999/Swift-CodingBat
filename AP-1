@@ -159,3 +159,21 @@ func dividesSelf(n: Int) -> Bool {
 //dividesSelf(n: 128) //true
 //dividesSelf(n: 12) //true
 //dividesSelf(n: 120) //false
+
+//copyEvens: Given an array of positive ints, return a new array of length "count" containing the first even numbers from the original array. The original array will contain at least "count" even numbers.
+func copyEvens(nums: [Int], count: Int) -> [Int] {
+    var result = [Int]()
+    
+    for num in nums {
+        if result.count < count && num % 2 == 0 {
+            result.append(num)
+        }
+    }
+    
+    
+    return result
+}
+
+//copyEvens(nums: [3, 2, 4, 5, 8], count: 2) //[2, 4]
+//copyEvens(nums: [3, 2, 4, 5, 8], count: 3) //[2, 4, 8]
+//copyEvens(nums: [6, 1, 2, 4, 5, 8], count: 3) //[6, 2, 4]

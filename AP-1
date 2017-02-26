@@ -230,3 +230,24 @@ func matchUp(a: [String], b: [String]) -> Int {
 //matchUp(a: ["aa", "bb", "cc"], b: ["aaa", "xx", "bb"]) //1
 //matchUp(a: ["aa", "bb", "cc"], b: ["aaa", "b", "bb"]) //2
 //matchUp(a: ["aa", "bb", "cc"], b: ["", "", "ccc"]) //1
+
+//scoreUp: The "key" array is an array containing the correct answers to an exam, like {"a", "a", "b", "b"}. the "answers" array contains a student's answers, with "?" representing a question left blank. The two arrays are not empty and are the same length. Return the score for this array of answers, giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer.
+func scoreUp(key: [String], answers: [String]) -> Int {
+    var score = 0
+    
+    for index in 0..<key.count {
+        if key[index] == answers[index] {
+            score += 4
+        } else if answers[index] == "?" {
+            score += 0
+        } else {
+            score -= 1
+        }
+    }
+    
+    return score
+}
+
+//scoreUp(key: ["a", "a", "b", "b"], answers: ["a", "c", "b", "c"]) //6
+//scoreUp(key: ["a", "a", "b", "b"], answers: ["a", "a", "b", "c"]) //11
+//scoreUp(key: ["a", "a", "b", "b"], answers: ["a", "a", "b", "b"]) //16

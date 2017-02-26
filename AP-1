@@ -135,3 +135,27 @@ func hasOne(n: Int) -> Bool {
 //hasOne(n: 10)) //true
 //hasOne(n: 22)) //false
 //hasOne(n: 220)) //false
+
+//dividesSelf: We'll say that a positive int divides itself if every digit in the number divides into the number evenly. So for example 128 divides itself since 1, 2, and 8 all divide into 128 evenly. We'll say that 0 does not divide into anything evenly, so no number with a 0 digit divides itself. Note: use % to get the rightmost digit, and / to discard the rightmost digit.
+func dividesSelf(n: Int) -> Bool {
+    var num = n
+    let numCopy = num
+    
+    while num > 0 {
+        if num % 10 == 0 {
+            return false
+        } else {
+            if numCopy % (n % 10) == 0 {
+                num = num / 10
+            } else {
+                return false
+            }
+        }
+    }
+    
+    return true
+}
+
+//dividesSelf(n: 128) //true
+//dividesSelf(n: 12) //true
+//dividesSelf(n: 120) //false

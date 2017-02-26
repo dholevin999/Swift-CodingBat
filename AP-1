@@ -177,3 +177,28 @@ func copyEvens(nums: [Int], count: Int) -> [Int] {
 //copyEvens(nums: [3, 2, 4, 5, 8], count: 2) //[2, 4]
 //copyEvens(nums: [3, 2, 4, 5, 8], count: 3) //[2, 4, 8]
 //copyEvens(nums: [6, 1, 2, 4, 5, 8], count: 3) //[6, 2, 4]
+
+//copyEndy: We'll say that a positive int n is "endy" if it is in the range 0..10 or 90..100 (inclusive). Given an array of positive ints, return a new array of length "count" containing the first endy numbers from the original array. Decompose out a separate isEndy(int n) method to test if a number is endy. The original array will contain at least "count" endy numbers.
+func copyEndy(nums: [Int], count: Int) -> [Int] {
+    var result = [Int]()
+    
+    for num in nums {
+        if result.count < count && isEndy(n: num) == true {
+            result.append(num)
+        }
+    }
+    
+    return result
+}
+
+func isEndy(n: Int) -> Bool {
+    if (n >= 0 && n <= 10) || (n >= 90 && n <= 100) {
+        return true
+    }
+    
+    return false
+}
+
+//copyEndy(nums: [9, 11, 90, 22, 6], count: 2) //[9, 90]
+//copyEndy(nums: [9, 11, 90, 22, 6], count: 3) //[9, 90, 6]
+//copyEndy(nums: [12, 1, 1, 13, 0, 20], count: 2) //[1, 1]

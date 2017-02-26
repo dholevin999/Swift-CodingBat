@@ -202,3 +202,31 @@ func isEndy(n: Int) -> Bool {
 //copyEndy(nums: [9, 11, 90, 22, 6], count: 2) //[9, 90]
 //copyEndy(nums: [9, 11, 90, 22, 6], count: 3) //[9, 90, 6]
 //copyEndy(nums: [12, 1, 1, 13, 0, 20], count: 2) //[1, 1]
+
+//matchUp: Given 2 arrays that are the same length containing strings, compare the 1st string in one array to the 1st string in the other array, the 2nd to the 2nd and so on. Count the number of times that the 2 strings are non-empty and start with the same char. The strings may be any length, including 0.
+func matchUp(a: [String], b: [String]) -> Int {
+    var count = 0
+    
+        var indexA = a[0].index(a[0].startIndex, offsetBy: 0)
+        var indexB = b[0].index(b[0].startIndex, offsetBy: 0)
+    
+    
+    for index in 0..<a.count {
+        
+        if a[index].characters.count > 0 && b[index].characters.count > 0 {
+            indexA = a[index].index(a[index].startIndex, offsetBy: 0)
+            indexB = b[index].index(b[index].startIndex, offsetBy: 0)
+            
+            if a[index][indexA] == b[index][indexB] {
+                count += 1
+            }
+        }
+        
+    }
+
+    return count
+}
+
+//matchUp(a: ["aa", "bb", "cc"], b: ["aaa", "xx", "bb"]) //1
+//matchUp(a: ["aa", "bb", "cc"], b: ["aaa", "b", "bb"]) //2
+//matchUp(a: ["aa", "bb", "cc"], b: ["", "", "ccc"]) //1

@@ -251,3 +251,20 @@ func scoreUp(key: [String], answers: [String]) -> Int {
 //scoreUp(key: ["a", "a", "b", "b"], answers: ["a", "c", "b", "c"]) //6
 //scoreUp(key: ["a", "a", "b", "b"], answers: ["a", "a", "b", "c"]) //11
 //scoreUp(key: ["a", "a", "b", "b"], answers: ["a", "a", "b", "b"]) //16
+
+//wordsWithout: Given an array of strings, return a new array without the strings that are equal to the target string. One approach is to count the occurrences of the target string, make a new array of the correct length, and then copy over the correct strings.
+func wordsWithout(words: [String], target: String) -> [String] {
+    var result = [String]()
+    
+    for word in words {
+        if word != target {
+            result.append(word)
+        }
+    }
+    
+    return result
+}
+
+//wordsWithout(words: ["a", "b", "c", "a"], target: "a") //["b", "c"]
+//wordsWithout(words: ["a", "b", "c", "a"], target: "b") //["a", "c", "a"]
+//wordsWithout(words: ["a", "b", "c", "a"], target: "c") //["a", "b", "a"]

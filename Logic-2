@@ -1,0 +1,17 @@
+//makeBricks: We want to make a row of bricks that is goal inches long. We have a number of small bricks (1 inch each) and big bricks (5 inches each). Return true if it is possible to make the goal by choosing from the given bricks. This is a little harder than it looks and can be done without any loops.
+func makeBricks(small: Int, big: Int, goal: Int) -> Bool {
+    
+    if goal > big * 5 + small {
+        return false
+    }
+    
+    if goal % 5 > small {
+        return false
+    }
+    
+    return true
+}
+
+//makeBricks(small: 3, big: 1, goal: 8) //true
+//makeBricks(small: 3, big: 1, goal: 9) //false
+//makeBricks(small: 3, big: 2, goal: 10) //true

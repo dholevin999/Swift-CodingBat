@@ -396,3 +396,22 @@ func mergeTwo(a: [String], b: [String], n: Int) -> [String] {
 //mergeTwo(a: ["a", "c", "z"], b: ["b", "f", "z"], n: 3) //["a", "b", "c"]
 //mergeTwo(a: ["a", "c", "z"], b: ["c", "f", "z"], n: 3) //["a", "c", "f"]
 //mergeTwo(a: ["f", "g", "z"], b: ["c", "f", "g"], n: 3) //["c", "f", "g"]
+
+//commontwo: Start with two arrays of strings, a and b, each in alphabetical order, possibly with duplicates. Return the count of the number of strings which appear in both arrays. The best "linear" solution makes a single pass over both arrays, taking advantage of the fact that they are in alphabetical order.
+func commonTwo(a: [String], b: [String]) -> Int {
+    var count = 0
+    
+    for x in 0..<a.count {
+        for y in 0..<b.count {
+            if a[x] == b[y] {
+                count += 1
+            }
+        }
+    }
+    
+    return count
+}
+
+//commonTwo(a: ["a", "c", "x"], b: ["b", "c", "d", "x"]) //2
+//commonTwo(a: ["a", "c", "x"], b: ["a", "b", "c", "x", "z"]) //3
+//commonTwo(a: ["a", "b", "c"], b: ["a", "b", "c"]) //3

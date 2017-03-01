@@ -110,3 +110,16 @@ func round10(num: Int) -> Int {
 //roundSum(a: 16, b: 17, c: 18) //60
 //roundSum(a: 12, b: 13, c: 14) //30
 //roundSum(a: 6, b: 4, c: 4) //10
+
+//closeFar: Given three ints, a b c, return true if one of b or c is "close" (differing from a by at most 1), while the other is "far", differing from both other values by 2 or more.
+func closeFar(a: Int, b: Int, c: Int) -> Bool {
+    if (abs(b-a) <= 1 && abs(c-a) >= 2 && abs(c-b) >= 2) || abs(c-a) <= 1 && abs(b-a) >= 2 && abs(c-b) >= 2 {
+        return true
+    }
+    
+    return false
+}
+
+//closeFar(a: 1, b: 2, c: 10) //true
+//closeFar(a: 1, b: 2, c: 3) //false
+//closeFar(a: 4, b: 1, c: 3) //true

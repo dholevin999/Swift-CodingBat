@@ -88,3 +88,25 @@ func fixTeen(n: Int) -> Int {
 //noTeenSum(a: 1, b: 2, c: 3) //6
 //noTeenSum(a: 2, b: 13, c: 1) //3
 //noTeenSum(a: 2, b: 1, c: 14) //3
+
+//roundSum:For this problem, we'll round an int value up to the next multiple of 10 if its rightmost digit is 5 or more, so 15 rounds up to 20. Alternately, round down to the previous multiple of 10 if its rightmost digit is less than 5, so 12 rounds down to 10. Given 3 ints, a b c, return the sum of their rounded values.
+func roundSum(a: Int, b: Int, c: Int) -> Int {
+    return round10(num: a) + round10(num: b) + round10(num: c)
+}
+
+func round10(num: Int) -> Int {
+    let value = num % 10
+    var result = num
+    
+    if value >= 5 {
+        result += (10 - value)
+    } else {
+        result -= value
+    }
+    
+    return result
+}
+
+//roundSum(a: 16, b: 17, c: 18) //60
+//roundSum(a: 12, b: 13, c: 14) //30
+//roundSum(a: 6, b: 4, c: 4) //10

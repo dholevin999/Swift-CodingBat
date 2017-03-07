@@ -123,3 +123,20 @@ func closeFar(a: Int, b: Int, c: Int) -> Bool {
 //closeFar(a: 1, b: 2, c: 10) //true
 //closeFar(a: 1, b: 2, c: 3) //false
 //closeFar(a: 4, b: 1, c: 3) //true
+
+//blackJack: Given 2 int values greater than 0, return whichever value is nearest to 21 without going over. Return 0 if they both go over.
+func blackJack(a: Int, b: Int) -> Int {
+    if a > b && a <= 21 {
+        return a
+    } else if a < b && b <= 21{
+        return b
+    } else if a > 21 && b > 21{
+        return 0
+    } else {
+        return a
+    }
+}
+
+//blackJack(a: 19, b: 21) //21
+//blackJack(a: 21, b: 19) //21
+//blackJack(a: 19, b: 22) //19

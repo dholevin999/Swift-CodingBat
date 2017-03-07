@@ -169,3 +169,26 @@ func evenlySpaced(a: Int, b: Int, c: Int) -> Bool {
 //evenlySpaced(a: 2, b: 4, c: 6) //true
 //evenlySpaced(a: 4, b: 6, c: 2) //true
 //evenlySpaced(a: 4, b: 6, c: 3) //false
+
+//makeChocolate: We want make a package of goal kilos of chocolate. We have small bars (1 kilo each) and big bars (5 kilos each). Return the number of small bars to use, assuming we always use big bars before small bars. Return -1 if it can't be done.
+func makeChocolate(small: Int, big: Int, goal: Int) -> Int {
+    var goalVar = goal
+    var count = 0
+    
+    goalVar = goal - (5 * big)
+    
+    while goalVar > 0 && count <= small {
+        goalVar -= 1
+        count += 1
+    }
+    
+    if count > small {
+        return -1
+    }
+    
+    return count
+}
+
+//makeChocolate(small: 4, big: 1, goal: 9) //4
+//makeChocolate(small: 4, big: 1, goal: 10) //-1
+//makeChocolate(small: 4, big: 1, goal: 7) //2

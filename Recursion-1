@@ -9,3 +9,17 @@ func factorial(n: Int) -> Int {
 //factorial(n: 1) //1
 //factorial(n: 2) //2
 //factorial(n: 3) //6
+
+//bunnyEars: We have a number of bunnies and each bunny has two big floppy ears. We want to compute the total number of ears across all the bunnies recursively (without loops or multiplication).
+func bunnyEars(bunnies: Int) -> Int {
+    
+    if bunnies == 0 {
+        return 0
+    }
+    
+    return (2 + bunnyEars(bunnies: bunnies - 1))
+}
+
+//bunnyEars(bunnies: 0) //0
+//bunnyEars(bunnies: 1) //2
+//bunnyEars(bunnies: 2) //4

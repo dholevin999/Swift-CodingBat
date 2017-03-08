@@ -68,3 +68,17 @@ func triangle(rows: Int) -> Int {
 //triangle(rows: 0) //0
 //triangle(rows: 1) //1
 //triangle(rows: 2) //3
+
+//sumDigits:Given a non-negative int n, return the sum of its digits recursively (no loops). Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while divide (/) by 10 removes the rightmost digit (126 / 10 is 12).
+func sumDigits(n: Int) -> Int {
+    
+    if n == 0 {
+        return 0
+    }
+    
+    return (n % 10 + sumDigits(n: n / 10))
+}
+
+//sumDigits(n: 126) //9
+//sumDigits(n: 49) //13
+//sumDigits(n: 12) //3

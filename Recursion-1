@@ -118,3 +118,16 @@ func count8(n: Int) -> Int {
 //count8(n: 8) //1
 //count8(n: 818) //2
 //count8(n: 8818) //4
+
+//powerN: Given base and n that are both 1 or more, compute recursively (no loops) the value of base to the n power, so powerN(3, 2) is 9 (3 squared).
+func powerN(base: Int, n: Int) -> Int {
+    if n == 0 {
+        return 1
+    }
+    
+    return (base * powerN(base: base, n: n-1))
+}
+
+//powerN(base: 3, n: 1) //3
+//powerN(base: 3, n: 2) //9
+//powerN(base: 3, n: 3) //27

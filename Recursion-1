@@ -152,3 +152,25 @@ func countx(str: String) -> Int {
 //countX(str: "xxhixx") //4
 //countX(str: "xhixhix") //3
 //countX(str: "hi") //0
+
+//countHi:Given a string, compute recursively (no loops) the number of times lowercase "hi" appears in the string.
+func countHiRecursion(str: String) -> Int {
+    var strTemp = str
+    
+    if str.characters.count == 0 {
+        return 0
+    }
+    
+    if str[str.startIndex] == "h" && str[str.index(after: str.startIndex)] == "i" {
+        strTemp.remove(at: strTemp.startIndex)
+        strTemp.remove(at: strTemp.startIndex)
+        return (1 + countHiRecursion(str: strTemp))
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return (countHiRecursion(str: strTemp))
+    }
+}
+
+//countHiRecursion(str: "xxhixx") //1
+//countHiRecursion(str: "xhixhix") //2
+//countHiRecursion(str: "hi") //1

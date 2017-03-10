@@ -174,3 +174,24 @@ func countHiRecursion(str: String) -> Int {
 //countHiRecursion(str: "xxhixx") //1
 //countHiRecursion(str: "xhixhix") //2
 //countHiRecursion(str: "hi") //1
+
+//changeXY: Given a string, compute recursively (no loops) a new string where all the lowercase 'x' chars have been changed to 'y' chars.
+func changeXY(str: String) -> String {
+    var strTemp = str
+    
+    if str.characters.count == 0 {
+        return ""
+    }
+    
+    if str[str.startIndex] == "x" {
+        strTemp.remove(at: strTemp.startIndex)
+        return (String("y") + changeXY(str: strTemp))
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return (String(str[str.startIndex]) + changeXY(str: strTemp))
+    }
+}
+
+//changeXY(str: "codex") //codey
+//changeXY(str: "xxhixx") //yyhiyy
+//changeXY(str: "xhixhix") //yhiyhiy

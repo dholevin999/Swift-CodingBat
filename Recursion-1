@@ -239,3 +239,24 @@ func noX(str: String) -> String {
 //noX(str: "xabx") //ab
 //noX(str: "abc") //abc
 //noX(str: "xx") //
+
+//array6: Given an array of ints, compute recursively if the array contains a 6. We'll use the convention of considering only the part of the array that begins at the given index. In this way, a recursive call can pass index+1 to move down the array. The initial call will pass in index as 0.
+func array6(nums: [Int], index: Int) -> Bool {
+   var numsTemp = nums
+    
+    if numsTemp.count == 0 {
+        return false
+    }
+    
+    if numsTemp[index] == 6 {
+        return true
+    } else if index < nums.count-1 {
+        return array6(nums: numsTemp, index: index+1)
+    } else {
+        return false
+    }
+}
+
+//array6(nums: [1, 6, 4], index: 0) //true
+//array6(nums: [1, 4], index: 0) //false
+//array6(nums: [6], index: 0) //true

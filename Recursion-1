@@ -218,3 +218,24 @@ func changePi(str: String) -> String {
 //changePi(str: "xpix") //x3.14x
 //changePi(str: "pipi") //3.143.14
 //changePi(str: "pip") //3.14p
+
+//noX: Given a string, compute recursively a new string where all the 'x' chars have been removed.
+func noX(str: String) -> String {
+    var strTemp = str
+    
+    if str.characters.count == 0 {
+        return ""
+    }
+    
+    if str[str.startIndex] == "x" {
+        strTemp.remove(at: strTemp.startIndex)
+        return noX(str: strTemp)
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return (String(str[str.startIndex]) + noX(str: strTemp))
+    }
+}
+
+//noX(str: "xabx") //ab
+//noX(str: "abc") //abc
+//noX(str: "xx") //

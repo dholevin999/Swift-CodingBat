@@ -195,3 +195,26 @@ func changeXY(str: String) -> String {
 //changeXY(str: "codex") //codey
 //changeXY(str: "xxhixx") //yyhiyy
 //changeXY(str: "xhixhix") //yhiyhiy
+
+//changePi: Given a string, compute recursively (no loops) a new string where all appearances of "pi" have been replaced by "3.14".
+func changePi(str: String) -> String {
+    var strTemp = str
+    
+    if str.characters.count == 0 {
+        return ""
+    }
+    
+    if str[str.startIndex] == "p" && str[str.index(after: str.startIndex)] == "i" {
+        strTemp.remove(at: strTemp.startIndex)
+        strTemp.remove(at: strTemp.startIndex)
+        return ("3.14" + changePi(str: strTemp))
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return (String(str[str.startIndex]) + changePi(str: strTemp))
+    }
+    
+}
+
+//changePi(str: "xpix") //x3.14x
+//changePi(str: "pipi") //3.143.14
+//changePi(str: "pip") //3.14p

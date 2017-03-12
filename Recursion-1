@@ -322,3 +322,25 @@ func allStar(str: String) -> String {
 //allStar(str: "hello") //h*e*l*l*o
 //allStar(str: "abc") //a*b*c
 //allStar(str: "ab") //a*b
+
+//pairStar: Given a string, compute recursively a new string where identical chars that are adjacent in the original string are separated from each other by a "*".
+func pairStar(str: String) -> String {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return ""
+    }
+    
+    if strTemp.characters.count > 1 && str[str.startIndex] == str[str.index(after: str.startIndex)] {
+        strTemp.remove(at: strTemp.startIndex)
+        strTemp.remove(at: strTemp.startIndex)
+        return (String(str[str.startIndex]) + "*" + String(str[str.index(after: str.startIndex)]) + pairStar(str: strTemp))
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return (String(str[str.startIndex]) + pairStar(str: strTemp))
+    }
+}
+
+//pairStar(str: "hello") //hel*lo
+//pairStar(str: "xxyy") //x*xy*y
+//pairStar(str: "aaaa") //a*aa*a

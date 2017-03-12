@@ -409,3 +409,25 @@ func countAbc(str: String) -> Int {
 //countAbc(str: "abc") //1
 //countAbc(str: "abcxxabc") //2
 //countAbc(str: "abaxxaba") //2
+
+//count11: Given a string, compute recursively (no loops) the number of "11" substrings in the string. The "11" substrings should not overlap.
+func count11(str: String) -> Int {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return 0
+    }
+    
+    if strTemp.characters.count > 1 && str[str.startIndex] == "1" && str[str.index(after: str.startIndex)] == "1" {
+        strTemp.remove(at: str.startIndex)
+        strTemp.remove(at: str.startIndex)
+        return (1 + count11(str: strTemp))
+    } else {
+        strTemp.remove(at: str.startIndex)
+        return count11(str: strTemp)
+    }
+}
+
+//count11(str: "11abc11") //2
+//count11(str: "abc11x11x11") //3
+//count11(str: "111") //1

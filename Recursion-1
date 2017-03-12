@@ -431,3 +431,30 @@ func count11(str: String) -> Int {
 //count11(str: "11abc11") //2
 //count11(str: "abc11x11x11") //3
 //count11(str: "111") //1
+
+//stringClean: Given a string, return recursively a "cleaned" string where adjacent chars that are the same have been reduced to a single char. So "yyzzza" yields "yza".
+func stringClean(str: String) -> String {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return ""
+    }
+    
+    if strTemp.characters.count > 2 && str[str.startIndex] == str[str.index(after: str.startIndex)] && str[str.startIndex] == str[str.index(str.startIndex, offsetBy: 2)] {
+        strTemp.remove(at: str.startIndex)
+        strTemp.remove(at: str.startIndex)
+        strTemp.remove(at: str.startIndex)
+        return (String(str[str.startIndex]) + stringClean(str: strTemp))
+    } else if strTemp.characters.count > 1 && str[str.startIndex] == str[str.index(after: str.startIndex)] {
+        strTemp.remove(at: str.startIndex)
+        strTemp.remove(at: str.startIndex)
+        return (String(str[str.startIndex]) + stringClean(str: strTemp))
+    } else {
+        strTemp.remove(at: str.startIndex)
+        return (String(str[str.startIndex]) + stringClean(str: strTemp))
+    }
+}
+
+//stringClean(str: "yyzzza") //yza
+//stringClean(str: "abbbcdd") //abcd
+//stringClean(str: "Hello") //Helo

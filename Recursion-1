@@ -365,3 +365,24 @@ func endX(str: String) -> String {
 //endX(str: "xxre") //rexx
 //endX(str: "xxhixx") //hixxxx
 //endX(str: "xhixhix") //hihixxx
+
+//countPairs:We'll say that a "pair" in a string is two instances of a char separated by a char. So "AxA" the A's make a pair. Pair's can overlap, so "AxAxA" contains 3 pairs -- 2 for A and 1 for x. Recursively compute the number of pairs in the given string.
+func countPairs(str: String) -> Int {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return 0
+    }
+    
+    if strTemp.characters.count > 2 && str[str.startIndex] == str[str.index(str.startIndex, offsetBy: 2)] {
+        strTemp.remove(at: strTemp.startIndex)
+        return (1 + countPairs(str: strTemp))
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return (countPairs(str: strTemp))
+    }
+}
+
+//countPairs(str: "axa") //1
+//countPairs(str: "axax") //2
+//countPairs(str: "axbx") //1

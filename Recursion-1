@@ -386,3 +386,26 @@ func countPairs(str: String) -> Int {
 //countPairs(str: "axa") //1
 //countPairs(str: "axax") //2
 //countPairs(str: "axbx") //1
+
+//countAbc: Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
+func countAbc(str: String) -> Int {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return 0
+    }
+    
+    if (strTemp.characters.count > 2 && str[str.startIndex] == "a" && str[str.index(after: str.startIndex)] == "b") && (str[str.index(str.startIndex, offsetBy: 2)] == "c" || str[str.index(str.startIndex, offsetBy: 2)] == "a") {
+        strTemp.remove(at: strTemp.startIndex)
+        strTemp.remove(at: strTemp.startIndex)
+        strTemp.remove(at: strTemp.startIndex)
+        return (1 + countAbc(str: strTemp))
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return countAbc(str: strTemp)
+    }
+}
+
+//countAbc(str: "abc") //1
+//countAbc(str: "abcxxabc") //2
+//countAbc(str: "abaxxaba") //2

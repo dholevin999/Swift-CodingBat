@@ -344,3 +344,24 @@ func pairStar(str: String) -> String {
 //pairStar(str: "hello") //hel*lo
 //pairStar(str: "xxyy") //x*xy*y
 //pairStar(str: "aaaa") //a*aa*a
+
+//endX: Given a string, compute recursively a new string where all the lowercase 'x' chars have been moved to the end of the string.
+func endX(str: String) -> String {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return ""
+    }
+    
+    if str[str.startIndex] == "x" {
+        strTemp.remove(at: strTemp.startIndex)
+        return (endX(str: strTemp) + "x")
+    } else {
+        strTemp.remove(at: strTemp.startIndex)
+        return (String(str[str.startIndex]) + endX(str: strTemp))
+    }
+}
+
+//endX(str: "xxre") //rexx
+//endX(str: "xxhixx") //hixxxx
+//endX(str: "xhixhix") //hihixxx

@@ -458,3 +458,24 @@ func stringClean(str: String) -> String {
 //stringClean(str: "yyzzza") //yza
 //stringClean(str: "abbbcdd") //abcd
 //stringClean(str: "Hello") //Helo
+
+//countHi2: Given a string, compute recursively the number of times lowercase "hi" appears in the string, however do not count "hi" that have an 'x' immedately before them.
+func countHi2(str: String) -> Int {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return 0
+    }
+    
+    if strTemp.characters.count > 2 && str[str.startIndex] != "x" && str[str.index(after: str.startIndex)] == "h" && str[str.index(str.startIndex, offsetBy: 2)] == "i" {
+        strTemp.remove(at: str.startIndex)
+        return (1 + countHi2(str: strTemp))
+    } else {
+        strTemp.remove(at: str.startIndex)
+        return countHi2(str: strTemp)
+    }
+}
+
+//countHi2(str: "ahixhi") //1
+//countHi2(str: "ahibhi") //2
+//countHi2(str: "xhixhi") //0

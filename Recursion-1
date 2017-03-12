@@ -300,3 +300,25 @@ func array220(nums: [Int], index: Int) -> Bool {
 //array220(nums: [1, 2, 20], index: 0) //true
 //array220(nums: [3, 30], index: 0) //true
 //array220(nums: [3], index: 0) //false
+
+//allStar: Given a string, compute recursively a new string where all the adjacent chars are now separated by a "*".
+func allStar(str: String) -> String {
+    var strTemp = str
+    
+    if strTemp.characters.count == 0 {
+        return ""
+    }
+    
+    
+    strTemp.remove(at: strTemp.startIndex)
+    
+    if strTemp.characters.count >= 1 {
+        return (String(str[str.startIndex]) + "*" + allStar(str: strTemp))
+    } else {
+        return (String(str[str.startIndex]) + allStar(str: strTemp))
+    }
+}
+
+//allStar(str: "hello") //h*e*l*l*o
+//allStar(str: "abc") //a*b*c
+//allStar(str: "ab") //a*b

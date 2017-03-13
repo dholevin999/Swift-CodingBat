@@ -576,3 +576,35 @@ func strCopies(str: String, sub: String, n: Int) -> Bool {
 //strCopies(str: "catcowcat", sub: "cat", n: 2) //true
 //strCopies(str: "catcowcat", sub: "cow", n: 2) //false
 //strCopies(str: "catcowcat", sub: "cow", n: 1) //true
+
+//strDist: Given a string and a non-empty substring sub, compute recursively the largest substring which starts and ends with sub and return its length.
+func strDist(str: String, sub: String) -> Int {
+    var strTemp = str
+    
+    if str.characters.count < sub.characters.count {
+        return 0
+    }
+    
+    let range = str.startIndex..<str.index(str.startIndex, offsetBy: sub.characters.count)
+    
+    if str.substring(with: range) == sub {
+        let range2 = str.index(str.endIndex, offsetBy: -sub.characters.count)..<str.endIndex
+        
+        if str.substring(with: range2) == sub {
+            return strTemp.characters.count
+        }
+        for _ in 0..<sub.characters.count {
+            strTemp.remove(at: str.startIndex)
+        }
+        
+        let range3 = str.startIndex..<sub.index(before: sub.endIndex)
+        return strCount(str: strTemp.substring(with: range3), sub: sub)
+    }
+    
+    strTemp.remove(at: str.startIndex)
+    return strCount(str: strTemp, sub: sub)
+}
+
+//strDist(str: "catcowcat", sub: "cat") //9
+//strDist(str: "catcowcat", sub: "cow") //1
+//strDist(str: "cccatcowcatxx", sub: "cat") //2

@@ -522,3 +522,28 @@ func nestParen(str: String) -> Bool {
 //nestParen(str: "(())") //true
 //nestParen(str: "((()))") //true
 //nestParen(str: "(((x))") //false
+
+//strCount: Given a string and a non-empty substring sub, compute recursively the number of times that sub appears in the string, without the sub strings overlapping.
+func strCount(str: String, sub: String) -> Int {
+    var strTemp = str
+    
+    if str.characters.count < sub.characters.count {
+        return 0
+    }
+    
+    let range = str.startIndex..<str.index(str.startIndex, offsetBy: sub.characters.count)
+    
+    if str.substring(with: range) == sub {
+        for _ in 0..<sub.characters.count {
+            strTemp.remove(at: str.startIndex)
+        }
+        return 1 + strCount(str: strTemp, sub: sub)
+    } else {
+        strTemp.remove(at: str.startIndex)
+        return strCount(str: strTemp, sub: sub)
+    }
+}
+
+//strCount(str: "catcowcat", sub: "cat") //2
+//strCount(str: "catcowcat", sub: "cow") //1
+//strCount(str: "catcowcat", sub: "dog") //0

@@ -547,3 +547,32 @@ func strCount(str: String, sub: String) -> Int {
 //strCount(str: "catcowcat", sub: "cat") //2
 //strCount(str: "catcowcat", sub: "cow") //1
 //strCount(str: "catcowcat", sub: "dog") //0
+
+//strCopies: Given a string and a non-empty substring sub, compute recursively if at least n copies of sub appear in the string somewhere, possibly with overlapping. N will be non-negative.
+func strCopies(str: String, sub: String, n: Int) -> Bool {
+    var strTemp = str
+    
+    if n == 0 {
+        return true
+    }
+    
+    if str.characters.count < sub.characters.count {
+        return false
+    }
+    
+    let range = str.startIndex..<str.index(str.startIndex, offsetBy: sub.characters.count)
+    
+    if str.substring(with: range) == sub {
+        for _ in 0..<sub.characters.count {
+            strTemp.remove(at: str.startIndex)
+        }
+        return strCopies(str: strTemp, sub: sub, n: n-1)
+    } else {
+        strTemp.remove(at: str.startIndex)
+        return strCopies(str: strTemp, sub: sub, n: n)
+    }
+}
+
+//strCopies(str: "catcowcat", sub: "cat", n: 2) //true
+//strCopies(str: "catcowcat", sub: "cow", n: 2) //false
+//strCopies(str: "catcowcat", sub: "cow", n: 1) //true
